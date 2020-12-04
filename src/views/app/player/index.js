@@ -7,6 +7,7 @@ class Player extends Component {
             videoId: this.props.match.params.id,
             videoData: {}
         }
+        console.log("Player");
     }
 
     async componentDidMount() {
@@ -23,7 +24,7 @@ class Player extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <video controls muted autoPlay crossOrigin="anonymous">
+                    <video controls autoPlay crossOrigin="anonymous">
                         <source src={`http://localhost:4000/video/${this.state.videoId}`} type="video/mp4"></source>
                         <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${this.state.videoId}/caption`} default></track>
                     </video>
