@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { VIDEO } from "../../../constants/api";
+import ReactHlsPlayer from "react-hls-player";
 
 class Player extends Component {
     constructor(props) {
@@ -7,28 +9,23 @@ class Player extends Component {
             videoId: this.props.match.params.id,
             videoData: {}
         }
-        console.log("Player");
-    }
-
-    async componentDidMount() {
-        try {
-            const res = await fetch(`http://localhost:4000/video/${this.state.videoId}/data`);
-            const data = await res.json();
-            this.setState({ videoData: data });
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     render() {
+        const { videoData } = this.state
+        console.log(videoData);
         return (
             <div className="App">
                 <header className="App-header">
-                    <video controls autoPlay crossOrigin="anonymous">
-                        <source src={`http://localhost:4000/video/${this.state.videoId}`} type="video/mp4"></source>
-                        <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${this.state.videoId}/caption`} default></track>
-                    </video>
                     <h1>{this.state.videoData.name}</h1>
+                    <ReactHlsPlayer
+                    url={`${VIDEO.all}/${this.state.videoId}`}
+                        // url='https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+                        autoplay={false}
+                        controls={true}
+                        width={500}
+                        height={375}
+                    />
                 </header>
             </div>
         )

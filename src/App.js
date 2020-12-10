@@ -45,8 +45,6 @@ class App extends Component {
   render() {
     // const { locale, loginUser } = this.props;
     // const currentAppLocale = AppLocale[locale];
-
-    console.log(window.location.href);
     return (
       <div className="h-100">
           <React.Fragment>

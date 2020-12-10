@@ -16,8 +16,6 @@ const Player = React.lazy(() =>
 class App extends Component {
   render() {
     const { match } = this.props;
-    console.log(match);
-    console.log(`${match.url}`);
     return (
       // <AppLayout>
         <div className="dashboard-wrapper">

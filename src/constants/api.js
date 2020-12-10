@@ -11,3 +11,9 @@ export const USERS = {
   login: `${apiPath}/${auth_users}/login`,
   register: `${apiPath}/${auth_users}/register`,
 }
+
+/** Video */
+export const video = 'video';
+export const VIDEO = {
+  all: `${apiPath}/${video}`,
+}

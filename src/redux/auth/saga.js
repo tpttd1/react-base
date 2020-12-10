@@ -60,16 +60,6 @@ const getUserDetails = async () => {
 export function* watchRegisterUser() {
     yield takeEvery(REGISTER_USER, registerWithEmailPassword);
 }
-const registerWithEmailPasswordAsync = async (firstName, lastName, email, password, confirmPassword) =>
-    await Api.callAsync('post', USERS.register, {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword
-    }).then(data => {
-        return data.data;
-    }).catch(error => error.response.data);
 
 function* registerWithEmailPassword({ payload }) {
     const { firstName, lastName, email, password, confirmPassword } = payload.user;
@@ -89,13 +79,19 @@ function* registerWithEmailPassword({ payload }) {
     }
 }
 
+const registerWithEmailPasswordAsync = async (firstName, lastName, email, password, confirmPassword) =>
+    await Api.callAsync('post', USERS.register, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword
+    }).then(data => {
+        return data.data;
+    }).catch(error => error.response.data);
+
 export function* watchLogoutUser() {
     yield takeEvery(LOGOUT_USER, logout);
-}
-
-const logoutAsync = async (history) => {
-    await ApiController.callAsync("POST", USERS.logout, null);
-    history.push('/')
 }
 
 function* logout({ payload }) {
@@ -106,6 +102,11 @@ function* logout({ payload }) {
         localStorage.removeItem('user_details');
     } catch (error) {
     }
+}
+
+const logoutAsync = async (history) => {
+    await ApiController.callAsync("POST", USERS.logout, null);
+    history.push('/')
 }
 
 export default function* rootSaga() {

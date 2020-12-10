@@ -22,7 +22,6 @@ class Home extends Component {
     }
 
     onChangeHandler = event => {
-        console.log(event.target.files[0])
         this.setState({
             selectedFile: event.target.files[0],
             loaded: 0,
@@ -35,7 +34,6 @@ class Home extends Component {
         axios.post("http://localhost:4000/upload", data, {
             // receive two    parameter endpoint url ,form data
         }).then(res => { // then print response status
-            console.log(JSON.stringify(res))
         })
     }
 
