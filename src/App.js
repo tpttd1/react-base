@@ -6,7 +6,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-// import NotificationContainer from './components/common/react-notifications/NotificationContainer';
+import NotificationContainer from './components/react-notifications/NotificationContainer';
 
 Object.byString = function(o, s) {
   s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <div className="h-100">
           <React.Fragment>
-            {/* <NotificationContainer /> */}
+            <NotificationContainer />
             <Suspense fallback={<div className="loading" />}>
               <Router>
                 <Switch>

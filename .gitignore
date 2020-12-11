@@ -26,3 +26,4 @@ package-log.json
 
 .env
 .eslintcache
+*.example
