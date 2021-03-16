@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -8,20 +8,21 @@ import {
 } from 'react-router-dom';
 import NotificationContainer from './components/react-notifications/NotificationContainer';
 
-Object.byString = function(o, s) {
+Object.byString = function (o, s) {
   s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
   s = s.replace(/^\./, '');           // strip a leading dot
   var a = s.split('.');
   for (var i = 0, n = a.length; i < n; ++i) {
-      var k = a[i];
-      if (k in o) {
-          o = o[k];
-      } else {
-          return;
-      }
+    var k = a[i];
+    if (k in o) {
+      o = o[k];
+    } else {
+      return;
+    }
   }
   return o;
 }
+
 const ViewMain = React.lazy(() =>
   import(/* webpackChunkName: "views" */ './views')
 );
@@ -35,49 +36,39 @@ const ViewError = React.lazy(() =>
   import(/* webpackChunkName: "views-error" */ './views/error')
 );
 
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  render() {
-    // const { locale, loginUser } = this.props;
-    // const currentAppLocale = AppLocale[locale];
-    return (
-      <div className="h-100">
-          <React.Fragment>
-            <NotificationContainer />
-            <Suspense fallback={<div className="loading" />}>
-              <Router>
-                <Switch>
-                  <Route
-                    path="/user"
-                    render={props => <ViewUser {...props} />}
-                  />
-                  <Route
-                    path="/app"
-                    render={props => <ViewApp {...props} />}
-                  />
-                  <Route
-                    path="/error"
-                    exact
-                    render={props => <ViewError {...props} />}
-                  />
-                  <Route
-                    path="/"
-                    exact
-                    render={props => <ViewMain {...props} />}
-                  />
-                  <Redirect to="/error" />
-                </Switch>
-              </Router>
-            </Suspense>
-          </React.Fragment>
-      </div>
-    );
-  }
+const App = ({ props }) => {
+  return (
+    <div className="h-100">
+      <React.Fragment>
+        <NotificationContainer />
+        <Suspense fallback={<div className="loading" />}>
+          <Router>
+            <Switch>
+              <Route
+                path="/user"
+                render={props => <ViewUser {...props} />}
+              />
+              <Route
+                path="/app"
+                render={props => <ViewApp {...props} />}
+              />
+              <Route
+                path="/error"
+                exact
+                render={props => <ViewError {...props} />}
+              />
+              <Route
+                path="/"
+                exact
+                render={props => <ViewMain {...props} />}
+              />
+              <Redirect to="/error" />
+            </Switch>
+          </Router>
+        </Suspense>
+      </React.Fragment>
+    </div>
+  );
 }
 
 const mapStateToProps = ({ authUser }) => {

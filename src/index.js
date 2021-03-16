@@ -1,6 +1,7 @@
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/bootstrap.rtl.only.min.css";
-import "./assets/scss/style.css";
+import "./assets/scss/style.scss";
+import "./global";
 
 const consoleError = console.error.bind(console);
 // eslint-disable-next-line

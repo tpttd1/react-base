@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
+import GlobalConfirmModal from './components/global-modal/GlobalConfirmModal'
+
+window.$showModal = GlobalConfirmModal.$showModal //global variable
 
 const App = React.lazy(() => import(/* webpackChunkName: "App" */'./App' ));
 

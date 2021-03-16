@@ -13,7 +13,7 @@ class Player extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
+                <header className="app-header">
                     <ReactHlsPlayer
                         url={`${VIDEO.all}/${this.state.videoId}`}
                         autoplay={false}

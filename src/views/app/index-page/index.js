@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
+import Posts from "./posts";
+import "./style.scss";
 
 class Home extends Component {
     constructor(props) {
@@ -37,29 +38,17 @@ class Home extends Component {
         })
     }
 
+    onClick = () => {
+        window.showModalIcon()
+    }
+
     render() {
         return (
-            <div className="App App-header">
-                <div className="container">
-                    <div className="row">
-                        <input type="file" name="file" onChange={this.onChangeHandler} />
-                        <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
-                    </div>
-                    <div className="row">
-                        {this.state.videos.map(video =>
-                            <div className="col-md-4" key={video.id}>
-                                <Link to={`/app/player/${video.id}`}>
-                                    <div className="card border-0">
-                                        <img src={`http://localhost:4000${video.poster}`} alt={video.name} />
-                                        <div className="card-body">
-                                            <p>{video.name}</p>
-                                            <p>{video.duration}</p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+            <div className="app">
+                <div className="custom-container">
+                    <div className="flex-grow-1">left side</div>
+                    <Posts />
+                    <div className="flex-grow-1">list friends</div>
                 </div>
             </div>
         )

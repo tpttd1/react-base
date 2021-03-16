@@ -1,3 +1,45 @@
 @import "./_mixins.scss";
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700");
 
+.text-red {
+    color: red;
+}
+.background-black {
+    background-color: black;
+}
+
+.d-flex {
+    display: flex;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+.fw-bold {
+    font-weight: bold;
+}
+.fs-12 {
+    font-size: 12px;
+}
+.fs-14 {
+    font-size: 14px;
+}
+.fs-16 {
+    font-size: 16px;
+}
+.hover-cursor {
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+.hover-action:hover {
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(66, 66, 66);
+}
